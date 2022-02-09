@@ -12,13 +12,8 @@ const peerServer = ExpressPeerServer(server, {
     path: '/myapp'
 });
 
-app.use(peerServer);
+app.use('/peerjs', peerServer);
 
 app.use(express.static(path.join(__dirname)));
 
-app.get("/", (request, response) => {
-    response.sendFile(__dirname + "/index.html");
-});
-
-server.listen(port);
 console.log('Listening on: ' + port);
