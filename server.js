@@ -1,19 +1,12 @@
-const express = require("express");
-const http = require('http');
-const path = require('path');
-const app = express();
-const server = http.createServer(app);
-const { ExpressPeerServer } = require('peer');
-const port = process.env.PORT || "8001";
 
-const peerServer = ExpressPeerServer(server, {
+const { PeerServer } = require('peer');
+const port = process.env.PORT || "9000";
+
+const peerServer = PeerServer( {
     proxied: true,
     debug: true,
-    path: '/myapp'
+    path: '/myapp',
+    port: port,
 });
-
-app.use('/peerjs', peerServer);
-
-app.use(express.static(path.join(__dirname)));
 
 console.log('Listening on: ' + port);
